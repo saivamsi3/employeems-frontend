@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export const columns = [
@@ -43,8 +44,9 @@ export const columns = [
 
 export const fetchDepartments = async () => {
   let departments;
+  const {url} = userAuth();
   try {
-    const response = await axios.get("http://localhost:5000/api/department", {
+    const response = await axios.get(`${url}/api/department`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -55,7 +57,7 @@ export const fetchDepartments = async () => {
     }
   } catch (error) {
     if (error.response && !error.response.data.success) {
-      alert(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   }
   return departments;
@@ -63,9 +65,10 @@ export const fetchDepartments = async () => {
 
 // employees for salary from
 export const getEmployees = async (id) => {
+  const {url} = userAuth();
   let employees;
   try {
-    const response = await axios.get(`http://localhost:5000/api/employee/department/${id}`, {
+    const response = await axios.get(`${url}/api/employee/department/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -76,7 +79,7 @@ export const getEmployees = async (id) => {
     }
   } catch (error) {
     if (error.response && !error.response.data.success) {
-      alert(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   }
   return employees;

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { userAuth } from "../../context/authContext";
+import toast from "react-hot-toast";
 
 const Setting = () => {
   const navigate = useNavigate();
-  const { user } = userAuth();
+  const { user, url } = userAuth();
 
   const [setting, setSetting] = useState({
     userId: user._id,
@@ -14,8 +15,7 @@ const Setting = () => {
     confirmPassword: "",
   });
 
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,13 +33,13 @@ const Setting = () => {
     e.preventDefault();
 
     if (setting.newPassword !== setting.confirmPassword) {
-      setError("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
     try {
       const response = await axios.put(
-        "http://localhost:5000/api/setting/change-password",
+        `{url}/api/setting/change-password`,
         setting,
         {
           headers: {
@@ -49,7 +49,7 @@ const Setting = () => {
       );
 
       if (response.data.success)    {
-        setSuccess("Password changed successfully");
+        toast.success("Password changed successfully");
         setError("");
 
         setTimeout(() => {
@@ -57,11 +57,9 @@ const Setting = () => {
         }, 1000);
       }
     } catch (error) {
-      if (error.response) {
-        setError(error.response.data.error);
-      } else {
-        setError("Something went wrong. Please try again.");
-      }
+    
+        toast.error(error.response.data.error);
+     
     }
   };
 

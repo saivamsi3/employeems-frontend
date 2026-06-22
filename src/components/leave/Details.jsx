@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react'
+import toast from 'react-hot-toast';
 import { Navigate, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
@@ -7,30 +8,32 @@ const Details = () => {
     const {id} = useParams();
     const [leave , setLeave] = useState(null);
      const navigate = useNavigate()
+     const {url} = userAuth();
 
      useEffect(() => {  
     const fetchLeave = async () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/leave/detail/${id}`,
+          `${url}/api/leave/detail/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
-    console.log(response.data);
+    //console.log(response.data);
         
 
         if (response.data.success) {
+        toast.success(response.data.success);
           setLeave(response.data.leave);
         }
       } catch (error) {
         console.error(error);
 
         if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       } 
     };
@@ -41,7 +44,7 @@ const Details = () => {
   const changeStatus = async(id , status)=>{
              try {
         const response = await axios.put(
-          `http://localhost:5000/api/leave/${id}`, {status}  ,
+          `${url}/api/leave/${id}`, {status}  ,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -51,13 +54,14 @@ const Details = () => {
         
 
         if (response.data.success) {
+        toast.success(response.data.success);
             navigate(`/admin-dashboard/leaves/${id}`);  
         }
       } catch (error) {
         console.error(error);
 
         if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
+        toast.error(error.response.data.error);
         }
       } 
   }
@@ -81,7 +85,7 @@ const Details = () => {
       {/* Image */}
       <div className="w-72 h-72">
         <img
-          src={`http://localhost:5000/${leave?.employeeId.userId.profileImage || ""}`}
+          src={`${url}/${leave?.employeeId.userId.profileImage || ""}`}
           alt=""
           className="w-full h-full rounded-full object-cover border-4 border-gray-200"
         />

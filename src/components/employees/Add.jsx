@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { userAuth } from "../../context/authContext";
+import toast from "react-hot-toast";
 
 const Add = () => {
   const [departments, setDepartments] = useState([]);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+  const {url} = userAuth();
 
   useEffect(() => {
     const getDepartment = async () => {
@@ -34,7 +37,7 @@ const Add = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/employee/add",
+        `${url}/api/employee/add`,
         formDataObj,
         {
           headers: {
@@ -44,12 +47,12 @@ const Add = () => {
       );
 
       if (response.data.success) {
-         console.log("Employee added successfully");
+         toast.success(response.data.success)
         navigate("/admin-dashboard/employees");
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
-        alert(error.response.data.error);
+        toast.error(error.response.data.error);
       }
     }
   };

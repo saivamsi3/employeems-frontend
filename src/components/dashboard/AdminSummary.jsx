@@ -10,14 +10,17 @@ import {
   FaHourglassHalf,
   FaTimesCircle,
 } from "react-icons/fa";
+import { userAuth } from "../../context/authContext.jsx";
+import toast from "react-hot-toast";
 
 const AdminSummary = () => {
+  const {url} = userAuth();
   const [summary , setSummary] = useState(null);
 
   useEffect(()=>{
         const fetchSummary  = async ()=>{
           try{
-            const summary = await axios.get("http://localhost:5000/api/dashboard/summary" , {
+            const summary = await axios.get(`${url}/api/dashboard/summary` , {
               headers : {
               "Authorization" : `Bearer ${localStorage.getItem("token")}`
               }
@@ -25,9 +28,8 @@ const AdminSummary = () => {
             setSummary(summary.data)
           }catch(error){
             if(error.response){
-              alert(error.response.data.error)
+              toast.error(error.response.data.error)
             }
-            console.log(error.message)
           }
         }
         fetchSummary()

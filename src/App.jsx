@@ -23,6 +23,7 @@ import AddLeave from "./components/leave/Add";
 import Setting from "./components/EmployeeDashboard/Setting";
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>

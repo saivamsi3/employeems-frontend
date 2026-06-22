@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import toast, { Toaster } from 'react-hot-toast'
 
 const UserContext = createContext();
 
@@ -7,6 +8,7 @@ function AuthContext({ children }) {
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const url = import.meta.env.VITE_API_URL;
 
   //  VERIFY USER ON PAGE LOAD
   useEffect(() => {
@@ -23,7 +25,7 @@ function AuthContext({ children }) {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/auth/verify",
+          `${url}/api/auth/verify`,
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -63,8 +65,11 @@ function AuthContext({ children }) {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout, loading }}>
-      {children}
+    <UserContext.Provider value={{ user, login, logout, loading, url }}>
+      <Toaster>
+        {children}
+      </Toaster>
+      
     </UserContext.Provider>
   );
 }

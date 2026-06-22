@@ -3,9 +3,10 @@ import { Link , useParams } from 'react-router-dom'
 import {userAuth} from "../../context/authContext"
 import axios from 'axios'
 import { useState , useEffect } from 'react'
+import toast from 'react-hot-toast'
 
 const List = () => {
-const {user} = userAuth()
+const {user, url} = userAuth()
 const [leaves , setLeaves] = useState([])
   let sno = 1;
   const {id : empId} = useParams();
@@ -15,7 +16,7 @@ const [leaves , setLeaves] = useState([])
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/leave/${id}/${user.role}`,
+          `${url}/api/leave/${id}/${user.role}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -24,12 +25,13 @@ const [leaves , setLeaves] = useState([])
         );
 
         if (response.data.success) {
+          toast.success(response.data.success);
           setLeaves(response.data.leaves);
         }
       } catch (error) {
         console.log(error);
         if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       }
     };

@@ -9,21 +9,21 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const [error, setError] = useState(null)
 
-  const { login } = userAuth()
+  const { login, url } = userAuth()
   const navigate = useNavigate()
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
 
     try {
-
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${url}/api/auth/login`,
         { email, password }
       )
 
-      console.log(response.data)
+      
 
       if (response.data.success) {
 

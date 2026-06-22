@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const columns = [
   {
@@ -20,13 +21,14 @@ export const columns = [
 
 export const DepartmentButtons = ({Id , onDepartmentDelete}) => {
     const navigate = useNavigate()
+    const {url} = userAuth();
     
     const handleDelete = async (Id)=>{
       const confirm = window.confirm("Do You Want To Delete")
         if (confirm){
        try {
         const response = await axios.delete(
-          `http://localhost:5000/api/department/${Id}`,
+          `${url}/api/department/${Id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -40,7 +42,7 @@ export const DepartmentButtons = ({Id , onDepartmentDelete}) => {
         console.error(error);
 
         if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       }
 

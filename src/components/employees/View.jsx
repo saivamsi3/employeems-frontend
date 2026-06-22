@@ -1,35 +1,37 @@
   import axios from 'axios';
   import React, { useState , useEffect } from 'react'
+import toast from 'react-hot-toast';
   import { useParams } from 'react-router-dom'
 
   const View = () => {
       const {id} = useParams();
       const [employee , setEmployee] = useState(null);
+      const {url} = userAuth();
 
       useEffect(() => {
       const fetchEmployee = async () => {
 
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/employee/${id}`,
+            `${url}/api/employee/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
               },
             }
           );
-      console.log(response.data);
+      toast.success(response.data.success);
           
-          console.log("API Response:", response.data);
+          //console.log("API Response:", response.data);
 
           if (response.data.success) {
             setEmployee(response.data.employee);
           }
         } catch (error) {
-          console.error(error);
+          toast.error(error.response.data.error);
 
           if (error.response && !error.response.data.success) {
-            alert(error.response.data.error);
+            toast.error(error.response.data.error);
           }
         } 
       };
@@ -55,7 +57,7 @@
         {/* Image */}
         <div className="w-72 h-72">
           <img
-            src={`http://localhost:5000/${employee.userId.profileImage}`}
+            src={`${url}/${employee.userId.profileImage}`}
             alt=""
             className="w-full h-full rounded-full object-cover border-4 border-gray-200"
           />

@@ -3,10 +3,11 @@ import { useState } from "react";
 import { userAuth } from "../../context/authContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 
 const Add = () => {
-  const {user}=userAuth();
+  const {user,url}=userAuth();
   const [leave , setLeave] = useState({
      userId : user._id
   })
@@ -22,7 +23,7 @@ const Add = () => {
       e.preventDefault();
               try {
         const response = await axios.post(
-          `http://localhost:5000/api/leave/add`,leave,
+          `${url}/api/leave/add`,leave,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -30,16 +31,17 @@ const Add = () => {
           }
         );
         
-        console.log("API Response:", response.data);
+        //console.log("API Response:", response.data);
 
         if (response.data.success) {
+          toast.success(response.data.success)
           navigate("/employee-dashboard/leaves");
         }
       } catch (error) {
         console.error(error);
 
         if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       } 
       }

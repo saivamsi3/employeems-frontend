@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Edit = () => {
   const [employee, setEmployee] = useState(null);
   const [departments, setDepartments] = useState(null);
+  const {url} = userAuth();
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -24,7 +26,7 @@ const Edit = () => {
     const fetchEmployee = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/employee/${id}`,
+          `{url}/api/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -73,7 +75,7 @@ const Edit = () => {
       };
 
       const response = await axios.put(
-        `http://localhost:5000/api/employee/${id}`,
+        `${url}/api/employee/${id}`,
         updatedEmployee,
         {
           headers: {
@@ -84,10 +86,11 @@ const Edit = () => {
       );
 
       if (response.data.success) {
+        toast.success(response.data.success)
         navigate("/admin-dashboard/employees");
       }
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.error)
     }
   };
 

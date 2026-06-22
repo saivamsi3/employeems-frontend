@@ -14,6 +14,7 @@ const Add = () => {
 
   const [employees, setEmployees] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const {url} = userAuth();
 
   const navigate = useNavigate();
 
@@ -55,7 +56,7 @@ const Add = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/salary/add",
+        `${url}/api/salary/add`,
         employee,
         {
           headers: {

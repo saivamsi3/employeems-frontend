@@ -7,12 +7,12 @@ import { userAuth } from "../../context/authContext";
     const [salaries, setSalaries] = useState(null);
     const [filteredSalaries, setFilteredSalaries] = useState(null);
     const { id } = useParams();
-    const {user} = userAuth()
+    const {user, url} = userAuth()
 
     const fetchSalaries = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/salary/${id}/${user.role}`,
+          `${url}/api/salary/${id}/${user.role}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

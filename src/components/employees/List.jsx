@@ -5,11 +5,13 @@ import { EmployeeButtons } from '../../utils/EmployeeHelper.jsx';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import { columns } from '../../utils/EmployeeHelper.jsx';
+import toast from 'react-hot-toast';
 const List = () => {
   const [employees , setEmployees] = useState([])
 //  const [departments, setDepartments] = useState([]);
   const [filteredEmployee, setFilteredEmployee] = useState([]);
   const [empLoading, setEmpLoading] = useState(false);
+  const {url} = userAuth();
 
  useEffect(() => {
     const fetchEmployees = async () => {
@@ -17,7 +19,7 @@ const List = () => {
 
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/employee",
+          `${url}/api/employee`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -26,6 +28,7 @@ const List = () => {
         );
 
           if (response.data.success) {
+            toast.success(response.data.success)
             let sno = 1;
 
             const formatted = response.data.employees.map((emp) => ({
@@ -38,7 +41,7 @@ const List = () => {
                 <img
                   width={60}
                   className="rounded-full"
-                  src={`http://localhost:5000/${emp.userId.profileImage}`}
+                  src={`$${url}/${emp.userId.profileImage}`}
                   alt={emp.userId?.name || "Employee"}
                 />
               ) : (
@@ -52,7 +55,7 @@ const List = () => {
           }
         } catch (error) {
           if(error.response && !error.response.data.success){
-                  alert(error.response.data.error)
+                  toast.error(error.response.data.error)
           }
       } finally {
         setEmpLoading(false);
