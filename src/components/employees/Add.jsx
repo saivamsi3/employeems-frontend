@@ -13,7 +13,7 @@ const Add = () => {
 
   useEffect(() => {
     const getDepartment = async () => {
-      const departments = await fetchDepartments();
+      const departments = await fetchDepartments(url);
       setDepartments(departments);
     };
     getDepartment();

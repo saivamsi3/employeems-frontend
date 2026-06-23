@@ -1,7 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { userAuth } from "../context/authContext.jsx";
 
 export const columns = [
   {
@@ -43,9 +42,8 @@ export const columns = [
   },
 ];
 
-export const fetchDepartments = async () => {
+export const fetchDepartments = async (url) => {
   let departments;
-  const {url} = userAuth();
   try {
     const response = await axios.get(`${url}/api/department`, {
       headers: {
@@ -65,8 +63,7 @@ export const fetchDepartments = async () => {
 };
 
 // employees for salary from
-export const getEmployees = async (id) => {
-  const {url} = userAuth();
+export const getEmployees = async (url,id) => {
   let employees;
   try {
     const response = await axios.get(`${url}/api/employee/department/${id}`, {
