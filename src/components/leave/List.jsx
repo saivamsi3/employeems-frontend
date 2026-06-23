@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link , useParams } from 'react-router-dom'
-import {userAuth} from "../../context/authContext"
+import {userAuth} from "../../context/authContext.jsx"
 import axios from 'axios'
 import { useState , useEffect } from 'react'
 import toast from 'react-hot-toast'

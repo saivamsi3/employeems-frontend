@@ -1,8 +1,9 @@
 import React from 'react'
-import { userAuth } from '../context/authContext'
-import Sidebar from '../components/EmployeeDashboard/Sidebar'
+import { userAuth } from '../context/authContext.jsx'
+import Sidebar from '../components/EmployeeDashboard/Sidebar.jsx'
 import {Outlet} from 'react-router-dom'
-import Navbar from '../components/dashboard/Navbar'
+import Navbar from '../components/dashboard/Navbar.jsx'
+
 
 function EmployeeDashboard() {
     const {user} = userAuth()

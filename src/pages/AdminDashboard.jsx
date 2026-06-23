@@ -1,9 +1,9 @@
 import React from 'react'
-import { userAuth } from '../context/authContext'
+import { userAuth } from '../context/authContext.jsx'
 import { Outlet, useNavigate } from 'react-router-dom'
-import AdminSidebar from '../components/dashboard/AdminSidebar'
-import Navbar from '../components/dashboard/Navbar'
-import AdminSummary from '../components/dashboard/AdminSummary'
+import AdminSidebar from '../components/dashboard/AdminSidebar.jsx'
+import Navbar from '../components/dashboard/Navbar.jsx'
+import AdminSummary from '../components/dashboard/AdminSummary.jsx'
 
 function AdminDashboard() {
   const { user, loading } = userAuth()

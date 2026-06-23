@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { fetchDepartments } from "../../utils/EmployeeHelper";
+import { fetchDepartments } from "../../utils/EmployeeHelper.jsx";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { userAuth } from "../../context/authContext.jsx";
 
 const Edit = () => {
   const [employee, setEmployee] = useState(null);
@@ -26,7 +27,7 @@ const Edit = () => {
     const fetchEmployee = async () => {
       try {
         const response = await axios.get(
-          `{url}/api/employee/${id}`,
+          `${url}/api/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

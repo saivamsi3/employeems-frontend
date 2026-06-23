@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { userAuth } from "../../context/authContext";
+import { userAuth } from "../../context/authContext.jsx";
 import toast from "react-hot-toast";
 
 const Setting = () => {
@@ -39,7 +39,7 @@ const Setting = () => {
 
     try {
       const response = await axios.put(
-        `{url}/api/setting/change-password`,
+        `${url}/api/setting/change-password`,
         setting,
         {
           headers: {

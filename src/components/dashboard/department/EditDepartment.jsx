@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { userAuth } from "../../../context/authContext.jsx";
+import toast from "react-hot-toast";
 
 const EditDepartment = () => {
   const { id } = useParams();
@@ -10,13 +12,15 @@ const EditDepartment = () => {
 
   const [depLoading, setDepLoading] = useState(false);
 
+  const {url} = userAuth();
+
   useEffect(() => {
     const fetchDepartment = async () => {
       setDepLoading(true);
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/department/${id}`,
+          `${url}/api/department/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -33,7 +37,7 @@ const EditDepartment = () => {
         console.error(error);
 
         if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       } finally {
         setDepLoading(false);
@@ -57,7 +61,7 @@ const EditDepartment = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/department/${id}`,
+        `${url}/api/department/${id}`,
         department,
         {
           headers: {
@@ -73,7 +77,7 @@ const EditDepartment = () => {
       console.error(error);
 
       if (error.response && !error.response.data.success) {
-        alert(error.response.data.error);
+        toast.error(error.response.data.error);
       }
     }
   };

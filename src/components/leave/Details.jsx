@@ -3,6 +3,7 @@ import React, { useState , useEffect } from 'react'
 import toast from 'react-hot-toast';
 import { Navigate, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import { userAuth } from "../../context/authContext.jsx";
 
 const Details = () => {
     const {id} = useParams();

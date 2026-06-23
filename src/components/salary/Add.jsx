@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { fetchDepartments, getEmployees } from "../../utils/EmployeeHelper";
+import { fetchDepartments, getEmployees } from "../../utils/EmployeeHelper.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { userAuth } from "../../context/authContext.jsx";
 
 const Add = () => {
   const [employee, setEmployee] = useState({

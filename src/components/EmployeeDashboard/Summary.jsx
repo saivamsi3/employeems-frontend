@@ -1,7 +1,7 @@
 import React from 'react'
 import {FaUser} from "react-icons/fa"
 import { useParams } from 'react-router-dom'
-import { userAuth } from "../../context/authContext";
+import { userAuth } from "../../context/authContext.jsx";
 
 const SummaryCard = () => {
     const {user} = userAuth();

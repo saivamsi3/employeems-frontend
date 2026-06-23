@@ -66,9 +66,9 @@ function AuthContext({ children }) {
 
   return (
     <UserContext.Provider value={{ user, login, logout, loading, url }}>
-      <Toaster>
+      
         {children}
-      </Toaster>
+      <Toaster />
       
     </UserContext.Provider>
   );

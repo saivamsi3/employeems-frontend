@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { fetchDepartments } from "../../utils/EmployeeHelper";
+import { fetchDepartments } from "../../utils/EmployeeHelper.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { userAuth } from "../../context/authContext";
+import { userAuth } from "../../context/authContext.jsx";
 import toast from "react-hot-toast";
 
 const Add = () => {

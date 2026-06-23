@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
-import { columns, DepartmentButtons } from "../../../utils/DepartmentHelper";
+import { columns, DepartmentButtons } from "../../../utils/DepartmentHelper.jsx";
 import axios from "axios";
+import { userAuth } from "../../../context/authContext.jsx";
 
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
   const [filteredDepartments, setFilteredDepartments] = useState([]);
   const [depLoading, setDepLoading] = useState(false);
+  const {url} = userAuth();
 
   const onDepartmentDelete = (id) => {
     const updated = departments.filter((dep) => dep._id !== id);
@@ -22,7 +24,7 @@ const DepartmentList = () => {
 
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/department",
+          `${url}/api/department`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -1,7 +1,8 @@
   import React, { useEffect, useState } from "react";
   import { useParams } from "react-router-dom";
   import axios from "axios";
-import { userAuth } from "../../context/authContext";
+import { userAuth } from "../../context/authContext.jsx";
+import toast from "react-hot-toast";
 
   const View = () => {
     const [salaries, setSalaries] = useState(null);
@@ -27,7 +28,7 @@ import { userAuth } from "../../context/authContext";
       } catch (error) {
         console.log(error);
         if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
+          toast.error(error.response.data.error);
         }
       }
     };

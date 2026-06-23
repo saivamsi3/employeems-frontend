@@ -6,6 +6,8 @@ import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import { columns } from '../../utils/EmployeeHelper.jsx';
 import toast from 'react-hot-toast';
+import { userAuth } from "../../context/authContext.jsx";
+
 const List = () => {
   const [employees , setEmployees] = useState([])
 //  const [departments, setDepartments] = useState([]);
@@ -41,7 +43,7 @@ const List = () => {
                 <img
                   width={60}
                   className="rounded-full"
-                  src={`$${url}/${emp.userId.profileImage}`}
+                  src={`${url}/${emp.userId.profileImage}`}
                   alt={emp.userId?.name || "Employee"}
                 />
               ) : (

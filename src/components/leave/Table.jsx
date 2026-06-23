@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 // import DepartmentList from "../dashboard/department/DepartmentList";
 import DataTable from "react-data-table-component";
 import axios from "axios";
-import { LeaveButtons, columns } from "../../utils/LeaveHelper";
+import { LeaveButtons, columns } from "../../utils/LeaveHelper.jsx";
 import toast from "react-hot-toast";
+import { userAuth } from "../../context/authContext.jsx";
 
 const Table = () => {
   const [leaves, setLeaves] = useState([]);

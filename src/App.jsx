@@ -1,29 +1,28 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
-import AdminDashboard from "./pages/AdminDashboard";
-import EmployeeDashboard from "./pages/EmployeeDashboard";
-import PrivateRoutes from "./utils/PrivateRoutes";
-import RoleBaseRoutes from "./utils/RoleBaseRoutes";
-import AddDepartment from "./components/dashboard/department/AddDepartment";
-import AdminSummary from "./components/dashboard/AdminSummary";
-import List from "./components/employees/List";
-import DepartmentList from "./components/dashboard/department/DepartmentList";
-import EditDepartment from "./components/dashboard/department/EditDepartment";
-import Add from "./components/employees/Add";
-import View from "./components/employees/View";
-import Edit from "./components/employees/Edit";
-import AddSalary from ".//components/salary/Add";
-import ViewSalary from "./components/salary/View";
-import Table from "./components/leave/Table";
-import Detail from "./components/leave/Details";
+import Login from "./pages/Login.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
+import PrivateRoutes from "./utils/PrivateRoutes.jsx";
+import RoleBaseRoutes from "./utils/RoleBaseRoutes.jsx";
+import AddDepartment from "./components/dashboard/department/AddDepartment.jsx";
+import AdminSummary from "./components/dashboard/AdminSummary.jsx";
+import List from "./components/employees/List.jsx";
+import DepartmentList from "./components/dashboard/department/DepartmentList.jsx";
+import EditDepartment from "./components/dashboard/department/EditDepartment.jsx";
+import Add from "./components/employees/Add.jsx";
+import View from "./components/employees/View.jsx";
+import Edit from "./components/employees/Edit.jsx";
+import AddSalary from "./components/salary/Add.jsx";
+import ViewSalary from "./components/salary/View.jsx";
+import Table from "./components/leave/Table.jsx";
+import Detail from "./components/leave/Details.jsx";
+import Summary from "./components/EmployeeDashboard/Summary.jsx";
+import LeaveList from "./components/leave/List.jsx";
+import AddLeave from "./components/leave/Add.jsx";
+import Setting from "./components/EmployeeDashboard/Setting.jsx";
 
-import Summary from "./components/EmployeeDashboard/Summary";
-import LeaveList from "./components/leave/List";
-import AddLeave from "./components/leave/Add";
-import Setting from "./components/EmployeeDashboard/Setting";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import axios from "axios"
-import { userAuth } from '../context/authContext'
+import { userAuth } from '../context/authContext.jsx'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const Login = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState(null)
 
   const { login, url } = userAuth()
   const navigate = useNavigate()
@@ -15,7 +15,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError("")
 
     try {
       const response = await axios.post(
@@ -40,9 +39,9 @@ const Login = () => {
     } catch (error) {
 
       if (error.response) {
-        setError(error.response.data.error)
+        toast.error(error.response.data.error)
       } else {
-        setError("Server Error")
+        toast.error("Error")
       }
     }
   }
@@ -58,11 +57,11 @@ const Login = () => {
 
         <h2 className='text-2xl font-bold mb-4'>Login</h2>
 
-        {error && (
+        {/* {error && (
           <p className='text-red-500 mb-4 text-sm'>
             {error}
           </p>
-        )}
+        )} */}
 
         <form onSubmit={handleSubmit}>
 
