@@ -22,7 +22,7 @@ const Add = () => {
   useEffect(() => {
     const getDepartment = async () => {
       try {
-        const departments = await fetchDepartments();
+        const departments = await fetchDepartments(url);
         setDepartments(departments || []);
       } catch (error) {
         console.error(error);
@@ -34,8 +34,9 @@ const Add = () => {
   }, []);
 
   const handleDepartment = async (e) => {
+    
     try {
-      const emps = await getEmployees(e.target.value);
+      const emps = await getEmployees(url,e.target.value);
       setEmployees(emps || []);
     } catch (error) {
       console.error(error);

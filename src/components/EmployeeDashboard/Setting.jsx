@@ -15,7 +15,9 @@ const Setting = () => {
     confirmPassword: "",
   });
 
-  
+  const [error, setError] = useState("");
+const [success, setSuccess] = useState("");
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

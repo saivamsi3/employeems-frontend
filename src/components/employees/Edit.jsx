@@ -16,11 +16,11 @@ const Edit = () => {
   // Fetch Departments
   useEffect(() => {
     const getDepartment = async () => {
-      const departments = await fetchDepartments();
+      const departments = await fetchDepartments(url);
       setDepartments(departments);
     };
     getDepartment();
-  }, []);
+  }, [url]);
 
   // Fetch Employee
   useEffect(() => {
@@ -50,7 +50,7 @@ const Edit = () => {
     };
 
     fetchEmployee();
-  }, [id]);
+  }, [id,url]);
 
   // Handle Input Change
   const handleChange = (e) => {

@@ -56,7 +56,7 @@ const Details = () => {
 
         if (response.data.success) {
         toast.success(response.data.success);
-            navigate(`/admin-dashboard/leaves/${id}`);  
+            navigate("/admin-dashboard/leaves");  
         }
       } catch (error) {
         console.error(error);

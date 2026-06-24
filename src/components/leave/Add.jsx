@@ -109,6 +109,7 @@ const Add = () => {
                placeholder="   Reason"
               onChange={handleChange}
               className="w-full border border-gray-300"
+               required
             ></textarea>
           </div>
         </div>

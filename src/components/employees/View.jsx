@@ -21,9 +21,8 @@ import toast from 'react-hot-toast';
               },
             }
           );
-      toast.success(response.data.success);
           
-          //console.log("API Response:", response.data);
+        
 
           if (response.data.success) {
             setEmployee(response.data.employee);
@@ -32,8 +31,7 @@ import toast from 'react-hot-toast';
           toast.error(error.response.data.error);
 
           if (error.response && !error.response.data.success) {
-            toast.error(error.response.data.error);
-          }
+            toast.error(error.response?.data?.error || "Failed to fetch employee");          }
         } 
       };
 
