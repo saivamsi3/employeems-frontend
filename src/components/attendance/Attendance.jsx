@@ -14,6 +14,10 @@ const Attendance = () => {
   const [loading, setLoading] = useState(false);
   const {url} = userAuth();
 
+  const statusChange = ()=>{
+     fetchAttendance();
+  }
+
     const fetchAttendance = async () => {
       setLoading(true);
 
@@ -37,7 +41,7 @@ const Attendance = () => {
               sno: sno++,
               department: att.employeeId.department?.dep_name || "No Department",
               name: att.employeeId.userId?.name || "No Name",
-              action: <AttendanceHelper status = {att.status} />,
+              action: <AttendanceHelper status = {att.status} employeeId={att.employeeId.employeeId} statusChange={statusChange} />,
             }));
 
             setAttendance(data);
@@ -72,7 +76,7 @@ const Attendance = () => {
 
       <div className="flex justify-between mb-6 items-center mt-4">
         <input
-          placeholder="Search Employee"
+          placeholder="Search By Emp ID"
           className="border px-4 py-2 rounded"
           onChange={handleFilter}
         />
