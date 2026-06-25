@@ -6,10 +6,12 @@ import {
   FaCogs,
   FaMoneyBillAlt,
   FaMoneyBillWave,
+  FaRegistered,
   FaTachometerAlt,
   FaUsers,
 } from "react-icons/fa";
 import { userAuth } from "../../context/authContext.jsx";
+
 
 const Sidebar = () => {
   const { user } = userAuth();

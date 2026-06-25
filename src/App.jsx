@@ -4,12 +4,12 @@ import AdminDashboard from "./pages/AdminDashboard.jsx";
 import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import RoleBaseRoutes from "./utils/RoleBaseRoutes.jsx";
-import AddDepartment from "./components/dashboard/department/AddDepartment.jsx";
 import AdminSummary from "./components/dashboard/AdminSummary.jsx";
 import List from "./components/employees/List.jsx";
-import DepartmentList from "./components/dashboard/department/DepartmentList.jsx";
-import EditDepartment from "./components/dashboard/department/EditDepartment.jsx";
 import Add from "./components/employees/Add.jsx";
+import AddDepartment from "./components/department/AddDepartment.jsx";
+import DepartmentList from "./components/department/DepartmentList.jsx";
+import EditDepartment from "./components/department/EditDepartment.jsx";
 import View from "./components/employees/View.jsx";
 import Edit from "./components/employees/Edit.jsx";
 import AddSalary from "./components/salary/Add.jsx";
@@ -20,6 +20,8 @@ import Summary from "./components/EmployeeDashboard/Summary.jsx";
 import LeaveList from "./components/leave/List.jsx";
 import AddLeave from "./components/leave/Add.jsx";
 import Setting from "./components/EmployeeDashboard/Setting.jsx";
+import Attendance from "./components/attendance/Attendance.jsx";
+import AttendanceReport from "./components/attendance/AttendanceReport.jsx";
 
 
 function App() {
@@ -79,6 +81,10 @@ function App() {
             element={<LeaveList />}
           />
           <Route path="/admin-dashboard/setting" element={<Setting />} />
+          <Route path="/admin-dashboard/attendance" element={<Attendance/>} />
+          <Route path="/admin-dashboard/attendance-report" element={<AttendanceReport/>} />
+
+
         </Route>
 
         {/* employee dashboard routes */}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { userAuth } from "../../../context/authContext.jsx";
+import { userAuth } from "../../context/authContext.jsx";
 import toast from "react-hot-toast";
 
 const EditDepartment = () => {

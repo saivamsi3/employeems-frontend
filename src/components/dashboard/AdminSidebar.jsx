@@ -4,11 +4,13 @@ import {
   FaBuilding,
   FaCalendarAlt,
   FaCogs,
+  FaRegCalendarAlt,
   FaMoneyBillAlt,
   FaMoneyBillWave,
   FaTachometerAlt,
   FaUsers,
 } from "react-icons/fa";
+import {AiOutlineFileText} from "react-icons/ai"
 
 const AdminSidebar = () => {
   return (
@@ -69,6 +71,27 @@ const AdminSidebar = () => {
           <FaMoneyBillWave />
           <span>Salary</span>
         </NavLink>
+
+           <NavLink
+                  to={"/admin-dashboard/attendance/"}
+                  className={({ isActive }) =>
+                    `${isActive ? "bg-teal-500 " : " "}flex items-center space-x-4 block  py-2.5 px-4 rounded`
+                  }
+                >
+                  <FaRegCalendarAlt />
+                  <span>Attendance</span>
+                </NavLink>
+
+                 <NavLink
+                  to={"/admin-dashboard/attendance-report"}
+                  className={({ isActive }) =>
+                    `${isActive ? "bg-teal-500 " : " "}flex items-center space-x-4 block  py-2.5 px-4 rounded`
+                  }
+                >
+                  <AiOutlineFileText />
+                  <span>Attendance Report</span>
+                </NavLink>
+
 
         <NavLink
           to="/admin-dashboard/setting"
